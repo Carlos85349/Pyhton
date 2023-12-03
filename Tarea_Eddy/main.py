@@ -1,9 +1,9 @@
-from funciones import SistemaTransporteAerea  # Importa la clase SistemaTransporteAerea desde funciones.py
+from funciones import SistemaTransporteAerea
+from interfaz_grafica import mostrar_interfaz_inicio_sesion
 
 def main():
-    sistema = SistemaTransporteAerea()  # Crea una instancia de la clase SistemaTransporteAerea
-
-    sistema.iniciar_sistema()  # Llama al método iniciar_sistema de la instancia sistema
+    sistema = SistemaTransporteAerea()
+    mostrar_interfaz_inicio_sesion(sistema)
 
 if __name__ == "__main__":
     main()

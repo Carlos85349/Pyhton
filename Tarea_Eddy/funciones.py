@@ -251,30 +251,4 @@ class SistemaTransporteAerea:
     def cerrar_programa(self):
         print("¡Hasta luego!")
         exit()
-
-    def iniciar_sistema(self):
-        while True:
-            if not self.usuario_actual:
-                username = input("Ingrese su username: ")
-                password = input("Ingrese su password: ")
-                if self.login(username, password):
-                    print("Login exitoso.")
-                else:
-                    print("Usuario o contraseña incorrectos. Intente de nuevo.")
-                    continue
-
-            self.mostrar_menu_principal()
-            opcion = input("Seleccione una opción: ")
-
-            if opcion == "1":
-                self.menu_boleteria()
-            elif opcion == "2":
-                self.menu_despachar_vuelo()
-            elif opcion == "3":
-                self.menu_reportes()
-            elif opcion == "4":
-                self.cerrar_sesion()
-            elif opcion == "5":
-                self.cerrar_programa()
-            else:
-                print("Opción no válida. Intente de nuevo.")
+    pass
