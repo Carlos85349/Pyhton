@@ -1,6 +1,40 @@
 from funciones import SistemaTransporteAerea
 import tkinter as tk
 
+def mostrar_menu_principal(sistema):
+    ventana_menu = tk.Tk()
+    ventana_menu.title("Menú Principal - Sistema de Vuelos")
+    ventana_menu.geometry("400x300")  # Tamaño de la ventana
+
+    # Funciones para cada opción del menú
+    def opcion_boleteria():
+        pass  # Aquí iría la lógica para la opción de boletería
+
+    def opcion_despachar_vuelo():
+        pass  # Aquí iría la lógica para la opción de despachar vuelo
+
+    def opcion_reportes():
+        pass  # Aquí iría la lógica para la opción de reportes
+
+    def cerrar_sesion():
+        ventana_menu.destroy()  # Cerrar la ventana del menú principal
+        sistema.cerrar_sesion()  # Cerrar sesión en el sistema
+
+    # Botones para cada opción del menú
+    boton_boleteria = tk.Button(ventana_menu, text="Boletería", command=opcion_boleteria)
+    boton_boleteria.pack()
+
+    boton_despachar_vuelo = tk.Button(ventana_menu, text="Despachar Vuelo", command=opcion_despachar_vuelo)
+    boton_despachar_vuelo.pack()
+
+    boton_reportes = tk.Button(ventana_menu, text="Reportes", command=opcion_reportes)
+    boton_reportes.pack()
+
+    boton_cerrar_sesion = tk.Button(ventana_menu, text="Cerrar Sesión", command=cerrar_sesion)
+    boton_cerrar_sesion.pack()
+
+    ventana_menu.mainloop()
+
 def iniciar_sesion(sistema, ventana, entrada_usuario=None, entrada_contrasena=None, etiqueta_estado=None):
     def iniciar_sesion_callback():
         usuario = entrada_usuario.get()
@@ -9,29 +43,29 @@ def iniciar_sesion(sistema, ventana, entrada_usuario=None, entrada_contrasena=No
             if usuario in ["admin", "content", "limit"]:
                 print("Login exitoso.")
                 ventana.destroy()
-                # Llamar a la lógica del menú principal o cualquier otra acción del sistema aquí
+                mostrar_menu_principal(sistema)  # Llamada a la función del menú principal
             else:
                 etiqueta_estado.config(text="Usuario no autorizado.")
         else:
             etiqueta_estado.config(text="Usuario o contraseña incorrectos.")
-
     if entrada_usuario is None:
-        etiqueta_usuario = tk.Label(ventana, text="Usuario")
+        etiqueta_usuario = tk.Label(ventana, text="Usuario", font=("Arial", 12))
         etiqueta_usuario.pack()
 
-        entrada_usuario = tk.Entry(ventana)
+        entrada_usuario = tk.Entry(ventana, font=("Arial", 14))
         entrada_usuario.pack()
 
-        etiqueta_contrasena = tk.Label(ventana, text="Contraseña")
+        etiqueta_contrasena = tk.Label(ventana, text="Contraseña", font=("Arial", 12))
         etiqueta_contrasena.pack()
 
-        entrada_contrasena = tk.Entry(ventana, show="*")
+        entrada_contrasena = tk.Entry(ventana, show="*", font=("Arial", 14))
         entrada_contrasena.pack()
 
         etiqueta_estado = tk.Label(ventana, text="")
         etiqueta_estado.pack()
 
-        boton_inicio_sesion = tk.Button(ventana, text="Iniciar Sesión", command=iniciar_sesion_callback)
+        boton_inicio_sesion = tk.Button(ventana, text="Iniciar Sesión", font=("Arial", 12),
+                                        command=iniciar_sesion_callback)
         boton_inicio_sesion.pack()
 
         ventana.mainloop()
@@ -75,8 +109,7 @@ def mostrar_interfaz_inicio_sesion():
     # Crear y configurar el campo de entrada para contraseña
     etiqueta_contrasena = tk.Label(ventana, text="Contraseña", font=("Arial", 12))
     etiqueta_contrasena.pack()
-    entrada_contrasena = tk.Entry(ventana, show="*",
-                                  font=("Arial", 14))  # Muestra asteriscos para ocultar la contraseña
+    entrada_contrasena = tk.Entry(ventana, show="*", font=("Arial", 14))
     entrada_contrasena.pack()
 
     etiqueta_estado = tk.Label(ventana, text="")
